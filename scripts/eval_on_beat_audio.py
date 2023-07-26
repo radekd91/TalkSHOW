@@ -1,6 +1,7 @@
 import os, sys
 sys.path.append(os.getcwd())
 from scripts.demo_zero_face import *
+import math
 
 def main():
     parser = parse_args()
@@ -65,9 +66,10 @@ def main():
     end_idx = min(audios_per_shard * (shard_idx + 1), len(wav_files))
 
     if start_idx >= end_idx:
-        import math
+
         print('shard_idx is too large. Maximum num shard is {} when using shard size of {}'.format(int(math.ceil(len(wav_files) / audios_per_shard))), audios_per_shard)
         return
+    print(f"Process shard {shard_idx} out of {int(math.ceil(len(wav_files) / audios_per_shard))}")
 
     for i, wav in enumerate(wav_files):
         args.audio_file = wav
