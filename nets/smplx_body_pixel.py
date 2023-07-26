@@ -271,7 +271,7 @@ class TrainWrapper(TrainWrapperBaseClass):
             else:
                 if self.audio:
                     self.audioencoder.eval()
-                    audio = self.audioencoder(aud_feat.transpose(1, 2), frame_num=frame).unsqueeze(dim=-1).repeat(1, 1, 1, 2)
+                    audio = self.audioencoder(aud_feat.transpose(1, 2), frame_num=frame).unsqueeze(dim=-1).repeat(1, 1, 1, 2).to(self.device)
                     latents = self.generator.generate(id, shape=[audio.shape[2], 2], batch_size=B, aud_feat=audio)
                 else:
                     latents = self.generator.generate(id, shape=[aud_feat.shape[1]//4, 2], batch_size=B)
