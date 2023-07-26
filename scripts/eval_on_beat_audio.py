@@ -71,7 +71,7 @@ def main():
         return
     print(f"Process shard {shard_idx} out of {int(math.ceil(len(wav_files) / audios_per_shard))}")
 
-    for i, wav in enumerate(wav_files):
+    for i, wav in enumerate(wav_files[start_idx:end_idx]):
         args.audio_file = wav
         for id in range(4):
             args.id = id
