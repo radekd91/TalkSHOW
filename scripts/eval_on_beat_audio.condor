@@ -1,8 +1,8 @@
 executable = scripts/eval_on_beat_audio.sh
 arguments = $(Process) 15 ./config/body_pixel.json /is/cluster/work/rdanecek/for_kiran/SHOW_results_vanilla
-error = talkshow_logs/talkshow_vanilla.$(Process).err
-output = talkshow_logs/talkshow_vanilla.$(Process).out
-log = talkshow_logs/talkshow_vanilla.$(Process).log
+error = talkshow_vanilla_logs/talkshow_vanilla.$(Process).err
+output = talkshow_vanilla_logs/talkshow_vanilla.$(Process).out
+log = talkshow_vanilla_logs/talkshow_vanilla.$(Process).log
 request_memory = 32000
 request_cpus = 4
 request_gpus = 1
