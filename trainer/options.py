@@ -35,6 +35,7 @@ def parse_args():
     parser.add_argument('--infer', action='store_true')
     parser.add_argument('--shard_idx', type=int, default=-1)
     parser.add_argument('--audios_per_shard', type=int, default=-1)
-    parser.add_argument('--out_folder', type=str, default="/is/cluster/work/rdanecek/for_kiran/SHOW_results")
+    # parser.add_argument('--out_folder', type=str, default="/is/cluster/work/rdanecek/for_kiran/SHOW_results")
+    parser.add_argument('--out_folder', type=str, default="/is/cluster/work/rdanecek/for_kiran/SHOW_results_v2")
 
     return parser

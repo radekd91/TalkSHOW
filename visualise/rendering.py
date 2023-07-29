@@ -159,12 +159,14 @@ class RenderTool():
             width, height = 800, 1440
             viewport_height = 1440
             z_offset = 1.8
-
-        sr = 22000
-        audio, sr = librosa.load(cur_wav_file, sr=16000)
-        tmp_audio_file = tempfile.NamedTemporaryFile('w', suffix='.wav', dir=os.path.dirname(video_fname))
-        tmp_audio_file.close()
-        wavfile.write(tmp_audio_file.name, sr, audio)
+        if cur_wav_file is not None:
+            sr = 22000
+            audio, sr = librosa.load(cur_wav_file, sr=16000)
+            tmp_audio_file = tempfile.NamedTemporaryFile('w', suffix='.wav', dir=os.path.dirname(video_fname))
+            tmp_audio_file.close()
+            wavfile.write(tmp_audio_file.name, sr, audio)
+        else: 
+            audio = None
         tmp_video_file = tempfile.NamedTemporaryFile('w', suffix='.mp4', dir=os.path.dirname(video_fname))
         tmp_video_file.close()
         if int(cv2.__version__[0]) < 3:
@@ -233,13 +235,17 @@ class RenderTool():
             # final_img = add_image_text(final_img, 'frame'+str(i_frame), w=width, h=height)
             writer.write(final_img)
         writer.release()
-
-        cmd = ('ffmpeg -y' + ' -i {0} -i {1} -vcodec h264 -ac 2 -channel_layout stereo -pix_fmt yuv420p {2}'.format(
-            tmp_audio_file.name, tmp_video_file.name, video_fname)).split()
+        if audio is not None:
+            cmd = ('ffmpeg -y' + ' -i {0} -i {1} -vcodec h264 -ac 2 -channel_layout stereo -pix_fmt yuv420p {2}'.format(
+                tmp_audio_file.name, tmp_video_file.name, video_fname)).split()
         # cmd = ('ffmpeg' + '-i {0} -vcodec h264 -ac 2 -channel_layout stereo -pix_fmt yuv420p {1}'.format(
         #     tmp_video_file.name, video_fname)).split()
+        else: 
+            cmd = ('ffmpeg -y' + ' -i {0} -vcodec h264 -ac 2 -channel_layout stereo -pix_fmt yuv420p {1}'.format(
+                tmp_video_file.name, video_fname)).split()
         call(cmd)
-        os.remove(tmp_audio_file.name)
+        if audio is not None:
+            os.remove(tmp_audio_file.name)
         os.remove(tmp_video_file.name)
 
     def _render_continuity(self, cur_wav_file, pred, frame, run_in_parallel=False):
