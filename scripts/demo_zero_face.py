@@ -286,6 +286,9 @@ def infer(g_body, g_face, smplx_model, rendertool, config, args):
     cur_wav_file = args.audio_file
     # SHOW_infer_path = Path("/is/cluster/work/rdanecek/for_kiran/SHOW_results")
     SHOW_infer_path = Path(args.out_folder)
+    print("-------------------------------------")
+    print(f"Processing results will be saved to {SHOW_infer_path}")
+    print("-------------------------------------")
     id = args.id
     face = args.only_face
     stand = args.stand
