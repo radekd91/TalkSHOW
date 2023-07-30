@@ -301,7 +301,6 @@ def infer(g_body, g_face, smplx_model, rendertool, config, args):
     rendertool._render_sequences_helper(str(smplx_npz.with_suffix(".mp4")), cur_wav_file, vertices_list, stand=stand, face=face, whole_body=args.whole_body, transcript=None)
     rendertool._render_sequences_helper(str(smplx_npz_wayne.with_suffix(".mp4")), cur_wav_file, vertices_list_zero_face, stand=stand, face=face, whole_body=args.whole_body, transcript=None)
 
-        
     poses_ = dict[:, :165] 
     poses_ = poses_.reshape(poses_.shape[0], -1, 3)
     jts2replacebyzero = [0, # include jaw pose 

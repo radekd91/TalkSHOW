@@ -25,7 +25,7 @@ from torch.utils import data
 from data_utils.rotation_conversion import rotation_6d_to_matrix, matrix_to_axis_angle
 from data_utils.lower_body import part2full, pred2poses, poses2pred, poses2poses
 from visualise.rendering import RenderTool
-from scripts.beat_subjects import subject2genderbeta
+from scripts.beat_subjects import subject2genderbeta, subject2genderbeta_consistent
 from pathlib import Path
 
 
@@ -370,9 +370,17 @@ def infer(g_body, g_face, smplx_model, rendertool, config, args):
 
 
     vertices_list, pose = get_vertices(smplx_model, betas, result_list, config.Data.pose.expression, require_pose=True)
-    subject = "wayne"
-    gender = np.array("male", dtype='<U7')
-    gender_wayne, betas_wayne = subject2genderbeta(subject) 
+    # if cur_wav_file 
+    # subject = "wayne"
+    # gender = np.array("male", dtype='<U7')
+    # gender_wayne, betas_wayne = subject2genderbeta(subject) 
+    try:
+        subject = Path(cur_wav_file).name.split("_")[1]
+        gender_wayne, betas_wayne = subject2genderbeta_consistent(subject)
+    except KeyError:
+        subject = "wayne"
+        gender = np.array("male", dtype='<U7')
+        gender_wayne, betas_wayne = subject2genderbeta(subject) 
     # vertices_list_zero_face, pose_wayne = get_vertices_zero_face(smplx_model, torch.from_numpy( betas_wayne).to(device)[None, ...], result_list_no_face, config.Data.pose.expression, require_pose=True)
     vertices_list_zero_face, pose_wayne = get_vertices(smplx_model, torch.from_numpy( betas_wayne).to(device)[None, ...], result_list_no_face, config.Data.pose.expression, require_pose=True)
 

@@ -70,6 +70,13 @@ def subject2genderbeta(subject):
     elif subject in ["carla", "sophie", "catherine", "miranda", "kieks", "ayana", "luqi", "hailing", "kexin", "goto", "reamey", "yingqing", "tiffnay", "hanieh", "katya"]:
         return np.array("female", dtype='<U7'), fetchbetas(subject)
     
+def subject2genderbeta_consistent(subject):
+    if subject in ["wayne", "scott", "solomon", "lawrence", "stewart", "nidal", "zhao", "lu", "zhang", "carlos", "jorge", "itoi", "daiki", "jaime", "li"]:
+        return np.array("male", dtype='<U7'), fetchbetas("scott")
+    elif subject in ["carla", "sophie", "catherine", "miranda", "kieks", "ayana", "luqi", "hailing", "kexin", "goto", "reamey", "yingqing", "tiffnay", "hanieh", "katya"]:
+        return np.array("female", dtype='<U7'), fetchbetas("kieks")
+    
+
 happy_takes = ["0_65_65", "0_66_66"]
 angry_takes = ["0_73_73", "0_74_74"]
 sad_takes = ["0_81_81", "0_82_82"]
