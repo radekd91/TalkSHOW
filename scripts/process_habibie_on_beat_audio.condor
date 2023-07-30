@@ -1,8 +1,8 @@
 executable = scripts/process_habibie_on_beat_audio.sh
 arguments = $(Process) 15 ./config/body_pixel.json /is/cluster/work/rdanecek/for_kiran/habibie
-error = talkshow_logs/talkshow.$(Process).err
-output = talkshow_logs/talkshow.$(Process).out
-log = talkshow_logs/talkshow.$(Process).log
+error = habibie_logs/habibie_logs.$(Process).err
+output = habibie_logs/habibie_logs.$(Process).out
+log = habibie_logs/habibie_logs.$(Process).log
 request_memory = 32000
 request_cpus = 4
 request_gpus = 1
