@@ -101,7 +101,12 @@ def process_results(result_fname, smplx_model, rendertool, config, args):
     if cur_wav_file.exists():
         cur_wav_file = str(cur_wav_file)
     else:
-        cur_wav_file = None
+        backup_wav_path = Path("/ps/scratch/shared_files_kchhatre/radek/gesticulation_audios_test")
+        cur_wav_file = (backup_wav_path / Path(result_fname).stem).with_suffix(".wav")
+        if cur_wav_file.exists():
+            cur_wav_file = str(cur_wav_file)
+        else:
+            cur_wav_file = None
 
 
     results = np.load(result_fname)
@@ -110,7 +115,7 @@ def process_results(result_fname, smplx_model, rendertool, config, args):
     # gender = np.array("male", dtype='<U7')
     # gender_wayne, betas_wayne = subject2genderbeta(subject) 
     try:
-        subject = Path(cur_wav_file).name.split("_")[1]
+        subject = Path(result_fname).name.split("_")[1]
         gender, betas = subject2genderbeta(subject)
         gender_wayne, betas_wayne = subject2genderbeta_consistent(subject)
     except KeyError:
