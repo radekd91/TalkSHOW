@@ -376,6 +376,7 @@ def infer(g_body, g_face, smplx_model, rendertool, config, args):
     # gender_wayne, betas_wayne = subject2genderbeta(subject) 
     try:
         subject = Path(cur_wav_file).name.split("_")[1]
+        gender, betas = subject2genderbeta(subject) 
         gender_wayne, betas_wayne = subject2genderbeta_consistent(subject)
     except KeyError:
         subject = "wayne"
