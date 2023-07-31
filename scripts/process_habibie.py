@@ -97,7 +97,12 @@ def process_results(result_fname, smplx_model, rendertool, config, args):
     # SHOW_infer_path = Path("/is/cluster/work/rdanecek/for_kiran/habibie")
     SHOW_infer_path = args.out_folder
     wav_path = Path("/ps/scratch/shared_files_kchhatre/radek/gesticulation_audios_new")
-    cur_wav_file = str((wav_path / Path(result_fname).stem).with_suffix(".wav"))
+    cur_wav_file = (wav_path / Path(result_fname).stem).with_suffix(".wav")
+    if cur_wav_file.exists():
+        cur_wav_file = str(cur_wav_file)
+    else:
+        cur_wav_file = None
+
 
     results = np.load(result_fname)
     # if cur_wav_file 
