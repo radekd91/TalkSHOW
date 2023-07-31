@@ -54,7 +54,7 @@ def main():
 
     path_to_audios = Path(args.audio_file)
 
-    print("Loading audio files from {}").format(path_to_audios)
+    print(f"Loading audio files from {path_to_audios}")
     wav_files = [str(p) for p in path_to_audios.glob('*.wav')]
     
     print(f"Found {len(wav_files)} audio files in {path_to_audios}")
