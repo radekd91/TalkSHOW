@@ -54,8 +54,11 @@ def main():
 
     path_to_audios = Path(args.audio_file)
 
+    print("Loading audio files from {}").format(path_to_audios)
     wav_files = [str(p) for p in path_to_audios.glob('*.wav')]
     
+    print(f"Found {len(wav_files)} audio files in {path_to_audios}")
+
     audios_per_shard = args.audios_per_shard
     shard_idx = args.shard_idx
 
