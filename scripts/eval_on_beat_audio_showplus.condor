@@ -1,5 +1,5 @@
 executable = scripts/eval_on_beat_audio.sh
-arguments = $(Process) 15 /ps/scratch/shared_files_kchhatre/radek/chkpoints_new/2023-07-29-smplx_S2G-body-pixel2/body_pixel.json /is/cluster/work/rdanecek/for_kiran/SHOW_results_plus
+arguments = $(Process) 15 /ps/scratch/shared_files_kchhatre/radek/chkpoints_new/2023-07-29-smplx_S2G-body-pixel2/body_pixel.json /is/cluster/work/rdanecek/for_kiran/SHOW_results_plus_test /ps/scratch/shared_files_kchhatre/radek/gesticulation_audios_test
 error = talkshow_logs/talkshow.$(Process).err
 output = talkshow_logs/talkshow.$(Process).out
 log = talkshow_logs/talkshow.$(Process).log
