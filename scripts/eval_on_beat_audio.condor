@@ -9,4 +9,4 @@ request_gpus = 1
 requirements=TARGET.CUDACapability>=7.0
 requirements=TARGET.CUDAGlobalMemoryMb>=30000
 concurrency_limits = user.talkshow:100
-queue 102
+queue 200
